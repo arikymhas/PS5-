@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PlayStation Club — бронирование игровых зон и приставок PlayStation." />
+  <title>PlayStation Club — Игровые зоны</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="appHeader"></div>
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <span class="eyebrow">PLAYSTATION CLUB</span>
+        <h1>Играй. Бронируй. Побеждай.</h1>
+        <p>Бронируй PS5 и PS4-зоны с комфортом: от одиночных сессий до больших компаний.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalog">Выбрать зону</a>
+          <a class="btn btn-ghost" href="bookings.html">Мои бронирования</a>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <div class="live-dot"><span></span> LIVE-СТАТУС</div>
+        <div class="hero-stat-row"><strong id="heroAvailable">—</strong><span>зон свободно сейчас</span></div>
+        <div class="hero-stat-row"><strong id="heroUsers">—</strong><span>пользователей клуба</span></div>
+        <div class="mini-console"><div class="mini-controller">◉</div><div><b>PlayStation 5</b><small>4K · 120Hz · DualSense</small></div></div>
+      </div>
+    </section>
+
+    <section class="shell section" id="catalog">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">КАТАЛОГ</span>
+          <h2>Игровые зоны</h2>
+        </div>
+        <span class="realtime-pill"><span class="pulse"></span> Обновляется в реальном времени</span>
+      </div>
+
+      <div class="toolbar glass">
+        <label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Поиск по названию или описанию..." /></label>
+        <select id="categoryFilter" class="select"><option value="all">Все категории</option><option value="ps5">PS5</option><option value="ps4">PS4</option><option value="vip">VIP</option></select>
+        <select id="sortSelect" class="select"><option value="priceAsc">Цена: сначала ниже</option><option value="priceDesc">Цена: сначала выше</option><option value="capacityDesc">Вместимость</option><option value="nameAsc">Название</option></select>
+      </div>
+
+      <div id="zonesGrid" class="cards-grid"></div>
+      <div id="emptyState" class="empty glass hidden"><div class="empty-icon">🎮</div><h3>Ничего не найдено</h3><p>Попробуйте изменить запрос или фильтры.</p></div>
+      <div class="pagination"><button id="loadMoreBtn" class="btn btn-secondary hidden">Показать ещё</button></div>
+    </section>
+  </main>
+  <div id="appFooter"></div>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

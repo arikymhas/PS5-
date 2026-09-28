@@ -1,0 +1,10 @@
+import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+import { doc, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js';
+import { auth, db, isFirebaseConfigured } from './firebase.js';
+import { renderFooter, renderHeader, showToast } from './ui.js';
+renderHeader();renderFooter();
+const notice=document.querySelector('#modeNotice'); if(!isFirebaseConfigured) notice.innerHTML='<div class="notice">Firebase config пока не задан. Интерфейс готов, но реальная регистрация станет доступна после подключения Firebase.</div>';
+const form=document.querySelector('#loginForm');
+form.addEventListener('submit',async e=>{e.preventDefault();if(!auth)return showToast('Сначала подключите Firebase в js/firebase.js.');try{await signInWithEmailAndPassword(auth,email.value,password.value);location.href='index.html';}catch(err){showToast(err.message.replace('Firebase: ',''));}});
+registerBtn.addEventListener('click',async()=>{if(!auth)return showToast('Сначала подключите Firebase в js/firebase.js.');try{const cred=await createUserWithEmailAndPassword(auth,email.value,password.value);await setDoc(doc(db,'users',cred.user.uid),{email:cred.user.email,name:cred.user.email.split('@')[0],role:'user',phone:'',createdAt:serverTimestamp()});location.href='profile.html';}catch(err){showToast(err.message.replace('Firebase: ',''));}});
+resetBtn.addEventListener('click',async()=>{if(!auth)return showToast('Сначала подключите Firebase.');if(!email.value)return showToast('abinaliev777@gmail.com');try{await sendPasswordResetEmail(auth,email.value);showToast('Письмо для восстановления отправлено.');}catch(err){showToast(err.message.replace('Firebase: ',''));}});
